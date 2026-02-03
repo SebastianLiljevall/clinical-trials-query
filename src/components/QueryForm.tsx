@@ -30,7 +30,7 @@ const PHASE_OPTIONS = [
 ]
 
 const STATUS_OPTIONS = [
-  { value: '', label: 'All' },
+  { value: 'ALL', label: 'All' },
   { value: 'RECRUITING', label: 'Recruiting' },
   { value: 'ACTIVE_NOT_RECRUITING', label: 'Active, not recruiting' },
   { value: 'COMPLETED', label: 'Completed' },
@@ -48,7 +48,7 @@ const RESULT_LIMIT_OPTIONS = [
 export function QueryForm({ onSubmit, isLoading, onCancel }: QueryFormProps) {
   const [condition, setCondition] = useState('')
   const [descriptionSearch, setDescriptionSearch] = useState('')
-  const [status, setStatus] = useState('')
+  const [status, setStatus] = useState('ALL')
   const [hasResults, setHasResults] = useState(false)
   const [selectedPhases, setSelectedPhases] = useState<string[]>([])
   const [resultLimit, setResultLimit] = useState(100)
@@ -59,7 +59,7 @@ export function QueryForm({ onSubmit, isLoading, onCancel }: QueryFormProps) {
     const params: QueryParams = {
       condition: condition || undefined,
       descriptionSearch: descriptionSearch || undefined,
-      status: status || undefined,
+      status: status === 'ALL' ? undefined : status,
       hasResults,
       phases: selectedPhases.length > 0 ? selectedPhases : undefined,
       resultLimit,
@@ -77,7 +77,7 @@ export function QueryForm({ onSubmit, isLoading, onCancel }: QueryFormProps) {
   const handleClear = () => {
     setCondition('')
     setDescriptionSearch('')
-    setStatus('')
+    setStatus('ALL')
     setHasResults(false)
     setSelectedPhases([])
     setResultLimit(100)
