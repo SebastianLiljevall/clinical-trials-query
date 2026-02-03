@@ -44,9 +44,9 @@ function App() {
         <Separator />
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" style={{ height: 'calc(100vh - 16rem)' }}>
           {/* Query Form - left column */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 overflow-auto">
             <QueryForm
               onSubmit={handleSubmit}
               isLoading={isLoading}
@@ -55,9 +55,9 @@ function App() {
           </div>
 
           {/* Results - right column */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 flex flex-col space-y-4 overflow-hidden">
             {/* Action bar */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-shrink-0">
               <ExportButtons data={filteredResults} disabled={isLoading} />
 
               {lastQuery && (
@@ -72,7 +72,7 @@ function App() {
 
             {/* API Query Display */}
             {showApiQuery && lastQuery && (
-              <Alert>
+              <Alert className="flex-shrink-0">
                 <AlertDescription className="font-mono text-xs break-all">
                   {lastQuery}
                 </AlertDescription>
@@ -81,7 +81,7 @@ function App() {
 
             {/* Error Display */}
             {error && (
-              <Alert variant="destructive">
+              <Alert variant="destructive" className="flex-shrink-0">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
@@ -89,9 +89,11 @@ function App() {
 
             {/* Loading State */}
             {isLoading && (
-              <div className="text-center py-12 text-muted-foreground">
-                <p className="text-lg">Querying ClinicalTrials.gov...</p>
-                <p className="text-sm mt-2">This may take a few moments</p>
+              <div className="text-center py-12 text-muted-foreground flex-1 flex items-center justify-center">
+                <div>
+                  <p className="text-lg">Querying ClinicalTrials.gov...</p>
+                  <p className="text-sm mt-2">This may take a few moments</p>
+                </div>
               </div>
             )}
 
