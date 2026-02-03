@@ -87,6 +87,61 @@ describe('transformStudy', () => {
   })
 })
 
+describe('transformStudy with conditions', () => {
+  it('should extract conditions as comma-separated string', () => {
+    const mockStudy: Study = {
+      protocolSection: {
+        identificationModule: {
+          nctId: 'NCT12345',
+          briefTitle: 'Test Study',
+        },
+        statusModule: {
+          overallStatus: 'Completed',
+        },
+        sponsorCollaboratorsModule: {
+          leadSponsor: {
+            name: 'Test Sponsor',
+            class: 'OTHER',
+          },
+        },
+        conditionsModule: {
+          conditions: ['Multiple System Atrophy', 'Parkinson Disease'],
+        },
+      },
+      hasResults: false,
+    } as Study
+
+    const result = transformStudy(mockStudy)
+
+    expect(result.conditions).toBe('Multiple System Atrophy, Parkinson Disease')
+  })
+
+  it('should handle missing conditions', () => {
+    const mockStudy: Study = {
+      protocolSection: {
+        identificationModule: {
+          nctId: 'NCT12345',
+          briefTitle: 'Test Study',
+        },
+        statusModule: {
+          overallStatus: 'Completed',
+        },
+        sponsorCollaboratorsModule: {
+          leadSponsor: {
+            name: 'Test Sponsor',
+            class: 'OTHER',
+          },
+        },
+      },
+      hasResults: false,
+    } as Study
+
+    const result = transformStudy(mockStudy)
+
+    expect(result.conditions).toBe('N/A')
+  })
+})
+
 describe('filterByDescription', () => {
   it('filters studies by description text', () => {
     const studies: Study[] = [
