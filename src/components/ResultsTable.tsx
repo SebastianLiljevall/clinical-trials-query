@@ -197,19 +197,19 @@ export function ResultsTable({ data }: ResultsTableProps) {
   }
 
   return (
-    <div className="space-y-4 h-full flex flex-col">
+    <div className="space-y-4 h-full flex flex-col min-h-0">
       <div className="text-sm text-muted-foreground flex-shrink-0">
         Showing {data.length} {data.length === 1 ? 'result' : 'results'}
       </div>
 
-      <div className="rounded-md border flex-1 overflow-hidden flex flex-col">
-        <div className="overflow-auto flex-1">
+      <div className="rounded-md border flex-1 min-h-0 relative">
+        <div className="absolute inset-0 overflow-auto">
           <Table>
-            <TableHeader className="sticky top-0 bg-background z-10">
+            <TableHeader className="sticky top-0 bg-background z-10 border-b">
               {table.getHeaderGroups().map(headerGroup => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map(header => (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="bg-background">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
