@@ -84,9 +84,9 @@ export function QueryForm({ onSubmit, isLoading, onCancel }: QueryFormProps) {
   }
 
   return (
-    <Card>
+    <Card className="border border-border bg-card">
       <CardHeader>
-        <CardTitle>Query Clinical Trials</CardTitle>
+        <CardTitle className="text-xl">Build Your Query</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">

@@ -61,7 +61,7 @@ export function ExportButtons({ data, disabled }: ExportButtonsProps) {
         className="flex items-center gap-2"
       >
         <Download className="h-4 w-4" />
-        Download CSV
+        <span className="hidden sm:inline">Download</span> CSV
       </Button>
       <Button
         variant="outline"
@@ -70,7 +70,7 @@ export function ExportButtons({ data, disabled }: ExportButtonsProps) {
         className="flex items-center gap-2"
       >
         <Download className="h-4 w-4" />
-        Download JSON
+        <span className="hidden sm:inline">Download</span> JSON
       </Button>
     </div>
   )

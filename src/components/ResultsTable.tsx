@@ -195,38 +195,52 @@ export function ResultsTable({ data }: ResultsTableProps) {
   }
 
   return (
-    <div className="space-y-4 h-full flex flex-col min-h-0">
-      <div className="text-sm text-muted-foreground flex-shrink-0">
-        Showing {data.length} {data.length === 1 ? 'result' : 'results'}
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <div className="text-sm text-muted-foreground">
+          Showing {data.length} {data.length === 1 ? 'result' : 'results'}
+        </div>
+        <div className="text-xs text-muted-foreground">
+          <span className="hidden sm:inline">Scroll horizontally to see all columns →</span>
+        </div>
       </div>
 
-      <div className="rounded-md border flex-1 min-h-0 overflow-auto">
-        <Table>
-          <TableHeader className="sticky top-0 bg-background z-10 border-b">
-            {table.getHeaderGroups().map(headerGroup => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <TableHead key={header.id} className="bg-background">
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.map(row => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map(cell => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      <div
+        className="border border-border overflow-x-auto overflow-y-auto"
+        style={{
+          height: '660px',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'hsl(var(--primary)) transparent',
+        }}
+      >
+        <div className="min-w-max">
+          <Table>
+            <TableHeader className="sticky top-0 bg-background z-10 border-b">
+              {table.getHeaderGroups().map(headerGroup => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <TableHead key={header.id} className="bg-background">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows.map(row => (
+                <TableRow key={row.id} className="hover:bg-muted/50">
+                  {row.getVisibleCells().map(cell => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   )

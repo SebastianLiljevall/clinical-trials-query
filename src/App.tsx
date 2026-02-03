@@ -6,7 +6,9 @@ import { Toaster } from '@/components/Toaster'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Separator } from '@/components/ui/separator'
-import { AlertCircle } from 'lucide-react'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { Button } from '@/components/ui/button'
+import { AlertCircle, ChevronDown, ChevronUp } from 'lucide-react'
 import { useStudyQuery } from '@/hooks/useStudyQuery'
 import type { QueryParams } from '@/lib/types'
 
@@ -14,6 +16,7 @@ function App() {
   const { isLoading, error, filteredResults, executeQuery, cancelQuery } = useStudyQuery()
   const [showApiQuery, setShowApiQuery] = useState(false)
   const [lastQuery, setLastQuery] = useState<string>('')
+  const [isQueryFormOpen, setIsQueryFormOpen] = useState(true)
 
   const handleSubmit = (params: QueryParams) => {
     // Build API query URL for display
@@ -29,32 +32,56 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto py-8 space-y-8">
-        {/* Header */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 max-w-[1800px]">
+        {/* Header - Clean & Simple */}
         <div className="flex items-start justify-between">
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold">Clinical Trials Query Tool</h1>
-            <p className="text-muted-foreground">
-              Search and download clinical trial data from ClinicalTrials.gov
+            <h1 className="text-4xl xl:text-5xl font-bold tracking-tight text-foreground">
+              Clinical Trials Query
+            </h1>
+            <p className="text-muted-foreground text-lg">
+              Search and analyze clinical trial data from ClinicalTrials.gov
             </p>
           </div>
           <ThemeToggle />
         </div>
 
-        <Separator />
+        <Separator className="bg-border" />
 
-        {/* Two-column layout */}
-        <div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
-          style={{ height: 'calc(100vh - 16rem)' }}
-        >
-          {/* Query Form - left column */}
-          <div className="lg:col-span-1 overflow-auto">
-            <QueryForm onSubmit={handleSubmit} isLoading={isLoading} onCancel={cancelQuery} />
+        {/* Two-column layout optimized for 1920x1080, stacks on mobile */}
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-8 xl:items-start">
+          {/* Left Column - Query Form */}
+          <div className="xl:col-span-4 flex flex-col">
+            <Collapsible open={isQueryFormOpen} onOpenChange={setIsQueryFormOpen}>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg xl:text-xl font-semibold">Query Parameters</h2>
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" size="sm" className="hover:bg-muted">
+                    {isQueryFormOpen ? (
+                      <>
+                        <ChevronUp className="h-4 w-4 mr-2" />
+                        <span className="hidden sm:inline">Collapse</span>
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="h-4 w-4 mr-2" />
+                        <span className="hidden sm:inline">Expand</span>
+                      </>
+                    )}
+                  </Button>
+                </CollapsibleTrigger>
+              </div>
+
+              <CollapsibleContent className="transition-all data-[state=closed]:animate-[collapsible-up_200ms] data-[state=open]:animate-[collapsible-down_200ms]">
+                <div className="xl:sticky xl:top-8">
+                  <QueryForm onSubmit={handleSubmit} isLoading={isLoading} onCancel={cancelQuery} />
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
           </div>
 
-          {/* Results - right column */}
-          <div className="lg:col-span-2 flex flex-col space-y-4 overflow-hidden">
+          {/* Right Column - Results */}
+          <div className="xl:col-span-8 space-y-4">
             {/* Action bar */}
             <div className="flex items-center justify-between flex-shrink-0">
               <ExportButtons data={filteredResults} disabled={isLoading} />
@@ -88,11 +115,9 @@ function App() {
 
             {/* Loading State */}
             {isLoading && (
-              <div className="text-center py-12 text-muted-foreground flex-1 flex items-center justify-center">
-                <div>
-                  <p className="text-lg">Querying ClinicalTrials.gov...</p>
-                  <p className="text-sm mt-2">This may take a few moments</p>
-                </div>
+              <div className="text-center py-12 text-muted-foreground">
+                <p className="text-lg">Querying ClinicalTrials.gov...</p>
+                <p className="text-sm mt-2">This may take a few moments</p>
               </div>
             )}
 
