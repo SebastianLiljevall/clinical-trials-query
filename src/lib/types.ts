@@ -278,6 +278,23 @@ export interface TransformedStudy {
   interventions?: string
 }
 
+export interface GroupMeasurement {
+  name: string
+  n?: number
+  estimate?: string
+  se?: string
+}
+
+export interface TransformedOutcomeMeasure {
+  nctId: string
+  conditions: string
+  outcomeType: string
+  endpoint: string
+  timeFrame: string
+  unitOfMeasure?: string
+  groups: GroupMeasurement[]
+}
+
 // Query parameters
 export interface QueryParams {
   condition?: string
