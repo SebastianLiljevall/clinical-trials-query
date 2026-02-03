@@ -210,11 +210,6 @@ Run tests with:
 npm test
 ```
 
-## Documentation
-
-- [Design Document](docs/plans/2026-02-03-clinical-trials-query-app-design.md) - Architecture and design decisions
-- [Implementation Plan](docs/plans/2026-02-03-clinical-trials-query-app.md) - Step-by-step implementation guide
-
 ## Contributing
 
 Contributions are welcome! Please:
@@ -248,9 +243,8 @@ MIT
 
 If you encounter any issues or have questions:
 
-1. Check the [Design Document](docs/plans/2026-02-03-clinical-trials-query-app-design.md) for architectural details
-2. Open an issue on GitHub
-3. Review existing issues for similar problems
+1. Open an issue on GitHub
+2. Review existing issues for similar problems
 
 ---
 
