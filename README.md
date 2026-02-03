@@ -140,6 +140,48 @@ npm run preview
 - Status: `Recruiting`
 - Result Limit: 1000
 
+### Viewing Outcome Measures
+
+When you filter for studies with published results, you can view detailed outcome measures data:
+
+1. **Enable Results Filter**
+   - Check "Only studies with published results" in the query form
+   - This enables outcome measures functionality
+
+2. **Toggle Between Views**
+   - After running a query, you'll see three toggle buttons above the results:
+     - **Studies:** Main study information table
+     - **Outcome Measures:** Detailed outcome measures from each study
+     - **Comparisons:** Baseline and outcome measure comparisons
+
+3. **Outcome Measures Table**
+   - Shows primary and secondary outcome measures
+   - Displays measure type, title, description, and time frame
+   - Includes statistical analysis and units where available
+   - Linked to source study via NCT ID
+
+4. **Comparisons Table**
+   - Shows arm/group comparison data
+   - Displays categories, group titles, and values
+   - Useful for comparing treatment arms
+
+5. **Export All Views**
+   - Each view (Studies, Outcome Measures, Comparisons) can be exported separately
+   - CSV exports use descriptive filenames based on the active view
+   - All NCT ID fields are clickable links to ClinicalTrials.gov
+
+**Note:** Manual testing checklist for developers:
+- Query without results filter shows studies table only
+- Query with results filter shows toggle buttons
+- Studies table shows Conditions column
+- Outcome Measures table displays correctly
+- Comparisons table displays correctly
+- Toggle switches between views smoothly
+- CSV export works for all three tables
+- Exported CSV files have correct filenames
+- NCT ID links work in all tables
+- Empty state handled gracefully
+
 ## API
 
 This app uses the [ClinicalTrials.gov API v2](https://clinicaltrials.gov/data-api/api):
