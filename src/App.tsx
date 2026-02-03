@@ -10,11 +10,7 @@ import { Button } from '@/components/ui/button'
 import { AlertCircle, ChevronDown, ChevronUp, Download } from 'lucide-react'
 import { useStudyQuery } from '@/hooks/useStudyQuery'
 import { useToast } from '@/hooks/use-toast'
-import {
-  exportStudiesCSV,
-  exportOutcomeMeasuresCSV,
-  exportComparisonsCSV,
-} from '@/lib/export'
+import { exportStudiesCSV, exportOutcomeMeasuresCSV, exportComparisonsCSV } from '@/lib/export'
 import type { QueryParams } from '@/lib/types'
 
 function App() {
@@ -188,10 +184,7 @@ function App() {
 
                 {/* Table View Toggle - Only show when hasResults filter is enabled */}
                 {shouldShowResults && !isLoading && filteredResults.length > 0 && (
-                  <TableViewToggle
-                    currentView={currentView}
-                    onViewChange={setCurrentView}
-                  />
+                  <TableViewToggle currentView={currentView} onViewChange={setCurrentView} />
                 )}
               </div>
 
@@ -231,12 +224,7 @@ function App() {
             )}
 
             {/* Results Table */}
-            {!isLoading && (
-              <ResultsTable
-                data={currentData as any}
-                view={currentView}
-              />
-            )}
+            {!isLoading && <ResultsTable data={currentData} view={currentView} />}
           </div>
         </div>
       </div>

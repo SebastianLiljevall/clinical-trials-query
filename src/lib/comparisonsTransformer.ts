@@ -14,11 +14,9 @@ export function transformToComparisons(studies: Study[]): TransformedComparison[
     if (!study.resultsSection.outcomeMeasuresModule) continue
 
     const { nctId } = study.protocolSection.identificationModule
-    const conditions =
-      study.protocolSection.conditionsModule?.conditions?.join(', ') ?? 'N/A'
+    const conditions = study.protocolSection.conditionsModule?.conditions?.join(', ') ?? 'N/A'
 
-    const outcomeMeasures =
-      study.resultsSection.outcomeMeasuresModule.outcomeMeasures
+    const outcomeMeasures = study.resultsSection.outcomeMeasuresModule.outcomeMeasures
 
     for (const measure of outcomeMeasures) {
       const comparisons = extractComparisons(nctId, conditions, measure)
@@ -73,9 +71,7 @@ function extractComparisons(
       differenceEstimate:
         analysis.paramValue !== undefined ? String(analysis.paramValue) : undefined,
       differenceSE:
-        analysis.dispersionValue !== undefined
-          ? String(analysis.dispersionValue)
-          : undefined,
+        analysis.dispersionValue !== undefined ? String(analysis.dispersionValue) : undefined,
       pValue: analysis.pValue,
       statisticalMethod: analysis.statisticalMethod,
       ciLowerLimit: analysis.ciLowerLimit,

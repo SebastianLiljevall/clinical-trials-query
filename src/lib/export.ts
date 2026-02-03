@@ -1,8 +1,4 @@
-import type {
-  TransformedStudy,
-  TransformedOutcomeMeasure,
-  TransformedComparison,
-} from './types'
+import type { TransformedStudy, TransformedOutcomeMeasure, TransformedComparison } from './types'
 
 // Helper function to escape CSV values
 function escapeCSV(value: string | number | boolean | undefined | null): string {
@@ -98,12 +94,7 @@ export function generateOutcomeMeasuresCSV(outcomes: TransformedOutcomeMeasure[]
 
   const groupHeaders: string[] = []
   for (let i = 1; i <= maxGroups; i++) {
-    groupHeaders.push(
-      `Group ${i} Name`,
-      `Group ${i} N`,
-      `Group ${i} Estimate`,
-      `Group ${i} SE`
-    )
+    groupHeaders.push(`Group ${i} Name`, `Group ${i} N`, `Group ${i} Estimate`, `Group ${i} SE`)
   }
 
   const headers = [...baseHeaders, ...groupHeaders]

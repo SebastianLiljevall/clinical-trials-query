@@ -5,7 +5,7 @@ import type { OutcomeMeasuresModule, OutcomeMeasureResult } from './types'
 describe('ResultsSection types', () => {
   it('should allow OutcomeMeasuresModule with empty array', () => {
     const mockData: OutcomeMeasuresModule = {
-      outcomeMeasures: []
+      outcomeMeasures: [],
     }
     expect(mockData.outcomeMeasures).toEqual([])
   })
@@ -31,16 +31,16 @@ describe('ResultsSection types', () => {
       unitOfMeasure: 'Participants',
       groups: [
         { id: 'G1', title: 'Treatment', description: 'Active drug' },
-        { id: 'G2', title: 'Placebo' }
+        { id: 'G2', title: 'Placebo' },
       ],
       denoms: [
         {
           units: 'Participants',
           counts: [
             { groupId: 'G1', value: 100 },
-            { groupId: 'G2', value: 98 }
-          ]
-        }
+            { groupId: 'G2', value: 98 },
+          ],
+        },
       ],
       classes: [
         {
@@ -54,12 +54,12 @@ describe('ResultsSection types', () => {
                   value: '50',
                   spread: '10',
                   lowerLimit: '40',
-                  upperLimit: '60'
-                }
-              ]
-            }
-          ]
-        }
+                  upperLimit: '60',
+                },
+              ],
+            },
+          ],
+        },
       ],
       analyses: [
         {
@@ -67,9 +67,9 @@ describe('ResultsSection types', () => {
           paramType: 'MEAN_DIFFERENCE',
           paramValue: 5.2,
           pValue: '0.003',
-          statisticalMethod: 'ANCOVA'
-        }
-      ]
+          statisticalMethod: 'ANCOVA',
+        },
+      ],
     }
     expect(fullOutcome.groups).toHaveLength(2)
     expect(fullOutcome.analyses?.[0].pValue).toBe('0.003')

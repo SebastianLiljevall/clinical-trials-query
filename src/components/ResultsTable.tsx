@@ -501,8 +501,7 @@ function getComparisonsColumns(): ColumnDef<TransformedComparison>[] {
         if (ciLower && ciUpper) {
           return (
             <div className="text-sm">
-              {ciPct ? `${ciPct}% CI: ` : 'CI: '}
-              [{ciLower}, {ciUpper}]
+              {ciPct ? `${ciPct}% CI: ` : 'CI: '}[{ciLower}, {ciUpper}]
             </div>
           )
         }

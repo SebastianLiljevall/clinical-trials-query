@@ -183,10 +183,14 @@ describe('generateOutcomeMeasuresCSV', () => {
     expect(csv).toContain('Group 3 Name,Group 3 N,Group 3 Estimate,Group 3 SE')
 
     // Check first row (2 groups)
-    expect(csv).toContain('NCT00000001,MSA,PRIMARY,Change in UMSARS,12 weeks,points,Treatment,50,-5.2,1.1,Placebo,48,-1.3,1.0')
+    expect(csv).toContain(
+      'NCT00000001,MSA,PRIMARY,Change in UMSARS,12 weeks,points,Treatment,50,-5.2,1.1,Placebo,48,-1.3,1.0'
+    )
 
     // Check second row (3 groups)
-    expect(csv).toContain('NCT00000002,Parkinson,SECONDARY,Quality of Life,24 weeks,score,Drug A,30,15.5,2.0,Drug B,32,12.3,1.8,Control,31,8.1,1.5')
+    expect(csv).toContain(
+      'NCT00000002,Parkinson,SECONDARY,Quality of Life,24 weeks,score,Drug A,30,15.5,2.0,Drug B,32,12.3,1.8,Control,31,8.1,1.5'
+    )
   })
 
   it('handles outcome measures with fields containing commas', () => {
@@ -442,6 +446,8 @@ describe('exportComparisonsCSV', () => {
     expect(clickSpy).toHaveBeenCalled()
 
     const linkElement = createElementSpy.mock.results[0].value as HTMLAnchorElement
-    expect(linkElement.download).toMatch(/^clinical-trials-comparisons-\d{4}-\d{2}-\d{2}-\d{6}\.csv$/)
+    expect(linkElement.download).toMatch(
+      /^clinical-trials-comparisons-\d{4}-\d{2}-\d{2}-\d{6}\.csv$/
+    )
   })
 })

@@ -9,9 +9,7 @@ import type {
  * Transform studies with published results into outcome measure rows
  * Each outcome measure becomes one row with measurements from all groups
  */
-export function transformToOutcomeMeasures(
-  studies: Study[]
-): TransformedOutcomeMeasure[] {
+export function transformToOutcomeMeasures(studies: Study[]): TransformedOutcomeMeasure[] {
   const allMeasures: TransformedOutcomeMeasure[] = []
 
   for (const study of studies) {
@@ -21,11 +19,9 @@ export function transformToOutcomeMeasures(
     if (!study.resultsSection.outcomeMeasuresModule) continue
 
     const { nctId } = study.protocolSection.identificationModule
-    const conditions =
-      study.protocolSection.conditionsModule?.conditions?.join(', ') ?? 'N/A'
+    const conditions = study.protocolSection.conditionsModule?.conditions?.join(', ') ?? 'N/A'
 
-    const outcomeMeasures =
-      study.resultsSection.outcomeMeasuresModule.outcomeMeasures
+    const outcomeMeasures = study.resultsSection.outcomeMeasuresModule.outcomeMeasures
 
     for (const measure of outcomeMeasures) {
       allMeasures.push(transformSingleOutcomeMeasure(nctId, conditions, measure))
@@ -60,9 +56,7 @@ function transformSingleOutcomeMeasure(
  * Extract measurements for all groups from the nested structure
  * Combines group names, participant counts, estimates, and standard errors
  */
-export function extractGroupMeasurements(
-  measure: OutcomeMeasureResult
-): GroupMeasurement[] {
+export function extractGroupMeasurements(measure: OutcomeMeasureResult): GroupMeasurement[] {
   if (!measure.groups) return []
 
   // Build maps for efficient lookup
@@ -70,7 +64,7 @@ export function extractGroupMeasurements(
   const measurements = extractMeasurements(measure)
 
   // Create group measurements by combining all data
-  return measure.groups.map((group) => ({
+  return measure.groups.map(group => ({
     name: group.title,
     n: participantCounts.get(group.id),
     estimate: measurements.get(group.id)?.estimate,
@@ -81,9 +75,7 @@ export function extractGroupMeasurements(
 /**
  * Extract participant counts (n) for each group from denoms
  */
-function extractParticipantCounts(
-  measure: OutcomeMeasureResult
-): Map<string, number> {
+function extractParticipantCounts(measure: OutcomeMeasureResult): Map<string, number> {
   const counts = new Map<string, number>()
 
   if (!measure.denoms || measure.denoms.length === 0) return counts
@@ -102,18 +94,16 @@ function extractParticipantCounts(
 /**
  * Extract measurements (estimate and se) for each group from classes
  */
-function extractMeasurements(measure: OutcomeMeasureResult): Map<
-  string,
-  { estimate?: string; se?: string }
-> {
+function extractMeasurements(
+  measure: OutcomeMeasureResult
+): Map<string, { estimate?: string; se?: string }> {
   const measurements = new Map<string, { estimate?: string; se?: string }>()
 
   if (!measure.classes || measure.classes.length === 0) return measurements
 
   // Use first class, first category
   const firstClass = measure.classes[0]
-  if (!firstClass.categories || firstClass.categories.length === 0)
-    return measurements
+  if (!firstClass.categories || firstClass.categories.length === 0) return measurements
 
   const firstCategory = firstClass.categories[0]
   if (!firstCategory.measurements) return measurements

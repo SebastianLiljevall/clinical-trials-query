@@ -85,9 +85,7 @@ describe('transformToOutcomeMeasures', () => {
                 {
                   categories: [
                     {
-                      measurements: [
-                        { groupId: 'G1', value: '120', spread: '15' },
-                      ],
+                      measurements: [{ groupId: 'G1', value: '120', spread: '15' }],
                     },
                   ],
                 },
