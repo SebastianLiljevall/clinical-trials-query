@@ -5,9 +5,10 @@ export function transformStudy(study: Study): TransformedStudy {
 
   // Extract basic info
   const nctId = protocolSection.identificationModule.nctId
-  const title = protocolSection.identificationModule.officialTitle ||
-                protocolSection.identificationModule.briefTitle ||
-                'N/A'
+  const title =
+    protocolSection.identificationModule.officialTitle ||
+    protocolSection.identificationModule.briefTitle ||
+    'N/A'
 
   // Extract sponsor info
   const sponsor = protocolSection.sponsorCollaboratorsModule.leadSponsor.name
@@ -15,9 +16,7 @@ export function transformStudy(study: Study): TransformedStudy {
 
   // Extract phase
   const phases = protocolSection.designModule?.phases || []
-  const phase = phases.length > 0
-    ? phases.map(p => formatPhase(p)).join(', ')
-    : 'N/A'
+  const phase = phases.length > 0 ? phases.map(p => formatPhase(p)).join(', ') : 'N/A'
 
   // Extract status
   const status = protocolSection.statusModule.overallStatus
@@ -88,8 +87,10 @@ export function filterByDescription(studies: Study[], searchTerm: string): Study
     const description = protocolSection.descriptionModule?.briefSummary || ''
     const detailedDescription = protocolSection.descriptionModule?.detailedDescription || ''
 
-    if (description.toLowerCase().includes(lowerSearch) ||
-        detailedDescription.toLowerCase().includes(lowerSearch)) {
+    if (
+      description.toLowerCase().includes(lowerSearch) ||
+      detailedDescription.toLowerCase().includes(lowerSearch)
+    ) {
       return true
     }
 
@@ -99,9 +100,10 @@ export function filterByDescription(studies: Study[], searchTerm: string): Study
       ...(protocolSection.outcomesModule?.secondaryOutcomes || []),
     ]
 
-    return outcomes.some(outcome =>
-      outcome.measure.toLowerCase().includes(lowerSearch) ||
-      outcome.description?.toLowerCase().includes(lowerSearch)
+    return outcomes.some(
+      outcome =>
+        outcome.measure.toLowerCase().includes(lowerSearch) ||
+        outcome.description?.toLowerCase().includes(lowerSearch)
     )
   })
 }

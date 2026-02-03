@@ -179,9 +179,13 @@ export interface DerivedSection {
 
 export interface ResultsSection {
   // Results structure (when available)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   participantFlowModule?: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   baselineCharacteristicsModule?: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   outcomeMeasuresModule?: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   adverseEventsModule?: any
 }
 

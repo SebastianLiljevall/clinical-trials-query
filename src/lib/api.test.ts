@@ -49,6 +49,7 @@ describe('fetchStudies', () => {
       totalCount: 0,
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(global.fetch as any).mockResolvedValue({
       ok: true,
       json: async () => mockResponse,
@@ -64,6 +65,7 @@ describe('fetchStudies', () => {
   })
 
   it('throws error on failed request', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(global.fetch as any).mockResolvedValue({
       ok: false,
       status: 500,
@@ -78,6 +80,7 @@ describe('fetchStudies', () => {
   it('passes abort signal to fetch', async () => {
     const controller = new AbortController()
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(global.fetch as any).mockResolvedValue({
       ok: true,
       json: async () => ({ studies: [] }),

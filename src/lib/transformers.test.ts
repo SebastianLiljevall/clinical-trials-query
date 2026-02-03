@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { transformStudy, filterByDescription, filterByPhases, filterByHasResults } from './transformers'
+import {
+  transformStudy,
+  filterByDescription,
+  filterByPhases,
+  filterByHasResults,
+} from './transformers'
 import type { Study } from './types'
 
 describe('transformStudy', () => {
