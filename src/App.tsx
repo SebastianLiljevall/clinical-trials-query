@@ -3,6 +3,7 @@ import { QueryForm } from '@/components/QueryForm'
 import { ResultsTable } from '@/components/ResultsTable'
 import { ExportButtons } from '@/components/ExportButtons'
 import { Toaster } from '@/components/Toaster'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Separator } from '@/components/ui/separator'
 import { AlertCircle } from 'lucide-react'
@@ -30,11 +31,14 @@ function App() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto py-8 space-y-8">
         {/* Header */}
-        <div className="space-y-2">
-          <h1 className="text-4xl font-bold">Clinical Trials Query Tool</h1>
-          <p className="text-muted-foreground">
-            Search and download clinical trial data from ClinicalTrials.gov
-          </p>
+        <div className="flex items-start justify-between">
+          <div className="space-y-2">
+            <h1 className="text-4xl font-bold">Clinical Trials Query Tool</h1>
+            <p className="text-muted-foreground">
+              Search and download clinical trial data from ClinicalTrials.gov
+            </p>
+          </div>
+          <ThemeToggle />
         </div>
 
         <Separator />
