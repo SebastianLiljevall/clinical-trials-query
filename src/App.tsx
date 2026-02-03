@@ -234,6 +234,7 @@ function App() {
             {!isLoading && (
               <ResultsTable
                 data={currentData as any}
+                view={currentView}
               />
             )}
           </div>
