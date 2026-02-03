@@ -295,6 +295,23 @@ export interface TransformedOutcomeMeasure {
   groups: GroupMeasurement[]
 }
 
+export interface TransformedComparison {
+  nctId: string
+  conditions: string
+  outcomeType: string
+  endpoint: string
+  timeFrame: string
+  group1Name: string
+  group2Name: string
+  differenceEstimate?: string
+  differenceSE?: string
+  pValue?: string
+  statisticalMethod?: string
+  ciLowerLimit?: string
+  ciUpperLimit?: string
+  ciPctValue?: string
+}
+
 // Query parameters
 export interface QueryParams {
   condition?: string
