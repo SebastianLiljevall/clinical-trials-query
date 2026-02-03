@@ -178,15 +178,86 @@ export interface DerivedSection {
 }
 
 export interface ResultsSection {
-  // Results structure (when available)
+  participantFlowModule?: ParticipantFlowModule
+  baselineCharacteristicsModule?: BaselineCharacteristicsModule
+  outcomeMeasuresModule?: OutcomeMeasuresModule
+  adverseEventsModule?: AdverseEventsModule
+}
+
+export interface ParticipantFlowModule {
+  // Keep as any for now - not needed for this feature
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  participantFlowModule?: any
+  [key: string]: any
+}
+
+export interface BaselineCharacteristicsModule {
+  // Keep as any for now - not needed for this feature
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  baselineCharacteristicsModule?: any
+  [key: string]: any
+}
+
+export interface AdverseEventsModule {
+  // Keep as any for now - not needed for this feature
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  outcomeMeasuresModule?: any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  adverseEventsModule?: any
+  [key: string]: any
+}
+
+export interface OutcomeMeasuresModule {
+  outcomeMeasures: OutcomeMeasureResult[]
+}
+
+export interface OutcomeMeasureResult {
+  type: 'PRIMARY' | 'SECONDARY'
+  title: string
+  description?: string
+  timeFrame: string
+  paramType?: string
+  dispersionType?: string
+  unitOfMeasure?: string
+
+  groups?: Array<{
+    id: string
+    title: string
+    description?: string
+  }>
+
+  denoms?: Array<{
+    units: string
+    counts: Array<{
+      groupId: string
+      value: number
+    }>
+  }>
+
+  classes?: Array<{
+    title?: string
+    categories?: Array<{
+      title?: string
+      measurements: Array<{
+        groupId: string
+        value: string
+        spread?: string
+        lowerLimit?: string
+        upperLimit?: string
+        comment?: string
+      }>
+    }>
+  }>
+
+  analyses?: Array<{
+    groupIds: string[]
+    paramType?: string
+    paramValue?: number
+    dispersionType?: string
+    dispersionValue?: number
+    pValue?: string
+    pValueComment?: string
+    statisticalMethod?: string
+    ciNumSides?: string
+    ciPctValue?: string
+    ciLowerLimit?: string
+    ciUpperLimit?: string
+  }>
 }
 
 // Transformed data for display in table
