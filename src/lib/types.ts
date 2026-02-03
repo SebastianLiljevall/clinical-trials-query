@@ -333,6 +333,8 @@ export interface QueryState {
 
 export type ExportFormat = 'csv' | 'json'
 
+export type TableView = 'studies' | 'outcomes' | 'comparisons'
+
 export interface ColumnConfig {
   key: keyof TransformedStudy
   label: string
