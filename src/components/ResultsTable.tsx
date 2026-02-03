@@ -202,8 +202,8 @@ export function ResultsTable({ data }: ResultsTableProps) {
         Showing {data.length} {data.length === 1 ? 'result' : 'results'}
       </div>
 
-      <div className="rounded-md border flex-1 min-h-0 relative overflow-x-auto">
-        <div className="absolute inset-0 overflow-y-auto overflow-x-visible">
+      <div className="rounded-md border flex-1 min-h-0 relative">
+        <div className="absolute inset-0" style={{ overflowY: 'auto', overflowX: 'scroll' }}>
           <Table>
             <TableHeader className="sticky top-0 bg-background z-10 border-b">
               {table.getHeaderGroups().map(headerGroup => (
