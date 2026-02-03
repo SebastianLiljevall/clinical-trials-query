@@ -26,7 +26,7 @@ A React-based web application for querying and downloading clinical trial data f
   - Timestamped filenames
 
 - 🎨 **Modern UI**
-  - Dark mode support
+  - Dark mode interface
   - Responsive layout
   - Clean, accessible design with shadcn/ui
 

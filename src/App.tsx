@@ -3,7 +3,6 @@ import { QueryForm } from '@/components/QueryForm'
 import { ResultsTable } from '@/components/ResultsTable'
 import { ExportButtons } from '@/components/ExportButtons'
 import { Toaster } from '@/components/Toaster'
-import { ThemeToggle } from '@/components/ThemeToggle'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Separator } from '@/components/ui/separator'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
@@ -34,16 +33,13 @@ function App() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 max-w-[1800px]">
         {/* Header - Clean & Simple */}
-        <div className="flex items-start justify-between">
-          <div className="space-y-2">
-            <h1 className="text-4xl xl:text-5xl font-bold tracking-tight text-foreground">
-              Clinical Trials Query
-            </h1>
-            <p className="text-muted-foreground text-lg">
-              Search and analyze clinical trial data from ClinicalTrials.gov
-            </p>
-          </div>
-          <ThemeToggle />
+        <div className="space-y-2">
+          <h1 className="text-4xl xl:text-5xl font-bold tracking-tight text-foreground">
+            Clinical Trials Query
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            Search and analyze clinical trial data from ClinicalTrials.gov
+          </p>
         </div>
 
         <Separator className="bg-border" />
