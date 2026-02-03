@@ -22,11 +22,7 @@ export function exportToCSV(studies: TransformedStudy[]): string {
         const stringValue = String(value)
 
         // Escape if contains comma, quote, or newline
-        if (
-          stringValue.includes(',') ||
-          stringValue.includes('"') ||
-          stringValue.includes('\n')
-        ) {
+        if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
           return `"${stringValue.replace(/"/g, '""')}"`
         }
 

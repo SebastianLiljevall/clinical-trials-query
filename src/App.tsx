@@ -44,14 +44,13 @@ function App() {
         <Separator />
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" style={{ height: 'calc(100vh - 16rem)' }}>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+          style={{ height: 'calc(100vh - 16rem)' }}
+        >
           {/* Query Form - left column */}
           <div className="lg:col-span-1 overflow-auto">
-            <QueryForm
-              onSubmit={handleSubmit}
-              isLoading={isLoading}
-              onCancel={cancelQuery}
-            />
+            <QueryForm onSubmit={handleSubmit} isLoading={isLoading} onCancel={cancelQuery} />
           </div>
 
           {/* Results - right column */}

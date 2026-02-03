@@ -125,7 +125,6 @@ describe('downloadFile', () => {
   })
 
   it('creates download link and triggers click', () => {
-    const clickMock = vi.fn()
     const createElementSpy = vi.spyOn(document, 'createElement')
 
     downloadFile('test content', 'test.csv', 'text/csv')

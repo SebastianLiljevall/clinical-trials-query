@@ -132,9 +132,7 @@ export function ResultsTable({ data }: ResultsTableProps) {
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         ),
-        cell: ({ row }) => (
-          <div className="text-center">{row.getValue('locationCount')}</div>
-        ),
+        cell: ({ row }) => <div className="text-center">{row.getValue('locationCount')}</div>,
       },
       {
         accessorKey: 'sponsorClass',
